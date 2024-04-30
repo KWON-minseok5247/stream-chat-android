@@ -48,7 +48,7 @@ internal class LoadNotificationDataWorker(
         val channelType: String = inputData.getString(DATA_CHANNEL_TYPE)!!
         val messageId: String = inputData.getString(DATA_MESSAGE_ID)!!
 
-        setForeground(createForegroundInfo())
+        // setForeground(createForegroundInfo())
 
         return try {
             val client: ChatClient = ChatClient.instance()
@@ -85,24 +85,24 @@ internal class LoadNotificationDataWorker(
         }
     }
 
-    private fun createForegroundInfo(): ForegroundInfo {
-        val foregroundNotification = createForegroundNotification(
-            notificationChannelId = context.getString(R.string.stream_chat_other_notifications_channel_id),
-            notificationChannelName = context.getString(R.string.stream_chat_other_notifications_channel_name),
-        )
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            ForegroundInfo(
-                NOTIFICATION_ID,
-                foregroundNotification,
-                FOREGROUND_SERVICE_TYPE_SHORT_SERVICE,
-            )
-        } else {
-            ForegroundInfo(
-                NOTIFICATION_ID,
-                foregroundNotification,
-            )
-        }
-    }
+    // private fun createForegroundInfo(): ForegroundInfo {
+    //     val foregroundNotification = createForegroundNotification(
+    //         notificationChannelId = context.getString(R.string.stream_chat_other_notifications_channel_id),
+    //         notificationChannelName = context.getString(R.string.stream_chat_other_notifications_channel_name),
+    //     )
+    //     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+    //         ForegroundInfo(
+    //             NOTIFICATION_ID,
+    //             foregroundNotification,
+    //             FOREGROUND_SERVICE_TYPE_SHORT_SERVICE,
+    //         )
+    //     } else {
+    //         ForegroundInfo(
+    //             NOTIFICATION_ID,
+    //             foregroundNotification,
+    //         )
+    //     }
+    // }
 
     private fun createForegroundNotification(
         notificationChannelId: String,
