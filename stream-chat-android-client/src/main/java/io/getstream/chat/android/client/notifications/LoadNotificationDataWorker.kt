@@ -122,13 +122,26 @@ internal class LoadNotificationDataWorker(
         notificationChannelName: String,
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel(
-                notificationChannelId,
-                notificationChannelName,
-                NotificationManager.IMPORTANCE_LOW,
-            ).run {
-                context.getSystemService(NotificationManager::class.java).createNotificationChannel(this)
-            }
+            // NotificationChannel(
+            //     notificationChannelId,
+            //     notificationChannelName,
+            //     NotificationManager.IMPORTANCE_LOW,
+            // ).run {
+            //     context.getSystemService(NotificationManager::class.java).createNotificationChannel(this)
+            // }
+            
+            val channel = NotificationChannel(
+            notificationChannelId,
+            notificationChannelName,
+            NotificationManager.IMPORTANCE_MIN // 가능한 한 최소한의 중요도
+        ).apply {
+            setShowBadge(false) // 알림 배지 표시 안 함
+            enableLights(false) // 알림 등 사용 안 함
+            enableVibration(false) // 진동 없음
+            setSound(null, null) // 소리 없음
+        }
+        context.getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
+
         }
     }
 
