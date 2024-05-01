@@ -48,7 +48,7 @@ internal class LoadNotificationDataWorker(
         val channelType: String = inputData.getString(DATA_CHANNEL_TYPE)!!
         val messageId: String = inputData.getString(DATA_MESSAGE_ID)!!
 
-        setForeground(createForegroundInfo())
+//        setForeground(createForegroundInfo())
 
         return try {
             val client: ChatClient = ChatClient.instance()
